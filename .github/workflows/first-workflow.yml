@@ -51,4 +51,4 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y postgresql-client
-          psql -U postgres%Abcd1234! -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mg
+          PGPASSWORD=Abcd1234! psql -U postgres -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mg
