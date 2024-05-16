@@ -17,7 +17,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    environment: ec2-teste
+    environment: teste
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -34,5 +34,5 @@ jobs:
       - name: Connect to EC2 with SSH
         run: |
           ls
-          chmod 400 site_chave.pem
-          scp -i "site_chave.pem" -r ./estilos/app.css ${{ secret.USER_UBUNTU }}@${{ vars.HOST_SITE }}:${{ secret.HTML_DIR }}
+          chmod 400 ${{ secret.EC2_KEY }}
+          scp -i "${{ secret.EC2_KEY }}" -r ./estilos/app.css ${{ secret.EC2_USER }}@${{ vars.EC2_SITE }}:${{ secret.EC2_HTML }}
