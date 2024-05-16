@@ -34,5 +34,6 @@ jobs:
       - name: Connect to EC2 with SSH
         run: |
           ls
+          sudo mkdir /var/www/html/mg/estilos
           chmod 400 ${{ secrets.EC2_KEY }}
-          scp -i "${{ secrets.EC2_KEY }}" -r ./estilos/app.css ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }}:${{ secrets.EC2_HTML }}
+          scp -i "${{ secrets.EC2_KEY }}" ./estilos/app.css ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }}:${{ secrets.EC2_HTML }}/estilos
