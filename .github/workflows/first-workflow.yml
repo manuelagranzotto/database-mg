@@ -38,6 +38,7 @@ jobs:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
   # This workflow contains a single job called "build"
   postgres-client:
+    environment: Teste
     needs: build
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -51,9 +52,10 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y postgresql-client
-          PGPASSWORD=Abcd1234! psql -U postgres -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mg -f tabela.sql
+          PGPASSWORD=${{ secret.PGPASSWORD }} psql -U ${{ secret.USER_PG }} -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mg -f tabela.sql
     
   postgres-table-contacts:
+    environment: Teste
     needs: postgres-client
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -65,4 +67,4 @@ jobs:
         # Runs a set of commands using the runners shell
       - name: Updates ubuntu and install pgsql-client
         run: |
-          PGPASSWORD=Abcd1234! psql -U postgres -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mg -f contacts.sql
+          PGPASSWORD=${{ secret.PGPASSWORD }} psql -U ${{ secret.USER_PG }} -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mg -f contacts.sql
