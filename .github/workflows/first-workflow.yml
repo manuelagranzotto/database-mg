@@ -52,7 +52,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt install -y postgresql-client
-          PGPASSWORD=${{ secret.PGPASSWORD }} psql -U ${{ secret.USER_PG }} -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mg -f tabela.sql
+          PGPASSWORD=${{ secret.PGPASSWORD }} psql -U ${{ secret.USER_PG }} -h ${{ vars.HOST_DB }} -d db-mg -f tabela.sql
     
   postgres-table-contacts:
     environment: Teste
@@ -67,4 +67,4 @@ jobs:
         # Runs a set of commands using the runners shell
       - name: Updates ubuntu and install pgsql-client
         run: |
-          PGPASSWORD=${{ secret.PGPASSWORD }} psql -U ${{ secret.USER_PG }} -h database-ea.cvkei0o2ei4o.eu-central-1.rds.amazonaws.com -d db-mg -f contacts.sql
+          PGPASSWORD=${{ secret.PGPASSWORD }} psql -U ${{ secret.USER_PG }} -h ${{ vars.HOST_DB }} -d db-mg -f contacts.sql
