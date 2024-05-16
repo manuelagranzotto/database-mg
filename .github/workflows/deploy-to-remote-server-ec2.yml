@@ -36,5 +36,5 @@ jobs:
         run: |
           echo "{{ secrets.SSH_PRIVATE_KEY }}" > site_chave.pem
           chmod 400 site_chave.pem
-          scp -o StrictHostKeyChecking=no -i site_chave.pem ./estilos/app.css ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }}:/var/www/html/mg/index.html
+          scp -o StrictHostKeyChecking=no -i site_chave.pem index.html ubuntu@ec2-18-156-78-72.eu-central-1.compute.amazonaws.com:/var/www/html/mg/index.html
 
