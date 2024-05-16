@@ -12,7 +12,9 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-
+env:
+  DATABASE_NAME: db_mg
+  BLA: 1234
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
@@ -31,8 +33,13 @@ jobs:
         run: echo host ${{ vars.HOST_DB }}
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Run a multi-line script with secrets
         run: |
           echo user db ${{ secrets.USER_PG }}
-          echo pass db ${{ secrets.PGPASSWORD }}
+          echo pass db ${{ secrets.PGPASSWORD }}  
+          
+      - name: Run a multi-line script with local variables
+        run: |
+          echo db name ${{ env.DATABASE_NAME }}
+          echo bla db ${{ env.BLA }}
 
