@@ -35,7 +35,7 @@ jobs:
         run: |
           chmod 400 site_chave.pem
           ssh -o StrictHostKeyChecking=no -i "site_chave.pem" -n ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }}
-          ls
+          ls /var/www/html/
           sudo mkdir /var/www/html/mg/estilos
       - name: Copy app.css
         run: |
