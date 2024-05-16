@@ -33,6 +33,7 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Connect to EC2 with SSH
         run: |
+          ssh -i "${{ secrets.EC2_KEY }}" ${{ secrets.EC2_USER }}@{{ vars.EC2_SITE }}
           ls
           sudo mkdir /var/www/html/mg/estilos
           chmod 400 ${{ secrets.EC2_KEY }}
