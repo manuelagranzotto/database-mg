@@ -34,7 +34,7 @@ jobs:
       - name: Connect to EC2 with SSH
         run: |
           chmod 400 "${{ secrets.EC2_key }}"
-          ssh -o StrictHostKeyChecking=no -i "${{ secrets.EC2_key }}" ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }} -t "ls /var/www/html/; chmod 777 /var/www/html/mg/estilos/"
+          ssh -o StrictHostKeyChecking=no -i "${{ secrets.EC2_key }}" ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }} -t "ls /var/www/html/; sudo chmod 777 /var/www/html/mg/estilos/"
       - name: Copy app.css
         run: |
           scp -o StrictHostKeyChecking=no -i "${{ secrets.EC2_key }}" ./estilos/app.css ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }}:${{ secrets.EC2_HTML }}/estilos/
