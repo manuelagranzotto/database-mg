@@ -33,11 +33,11 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Connect to EC2 with SSH
         run: |
-          ssh -i "${{ secrets.EC2_KEY }}" ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }}
+          ssh -i "site_chave.pem" ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }}
           ls
           sudo mkdir /var/www/html/mg/estilos
       - name: Copy app.css
         run: |
-          chmod 400 ${{ secrets.EC2_KEY }}
-          scp -i "${{ secrets.EC2_KEY }}" ./estilos/app.css ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }}:${{ secrets.EC2_HTML }}/estilos
+          chmod 400 site_chave.pem
+          scp -i "site_chave.pem" ./estilos/app.css ${{ secrets.EC2_USER }}@${{ vars.EC2_SITE }}:${{ secrets.EC2_HTML }}/estilos
 
