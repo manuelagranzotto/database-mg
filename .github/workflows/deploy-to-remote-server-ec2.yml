@@ -34,4 +34,4 @@ jobs:
         run: |
           ls
           chmod 400 ${{ secret.SITE_KEY }}
-          scp -i "${{ secret.SITE_KEY }}" -r ./estilos/app.css ${{ secret.USER_UBUNTU }}@${{ vars.HOST_SITE }}:${{ HTML_DIR }}
+          scp -i "${{ secret.SITE_KEY }}" -r ./estilos/app.css ${{ secret.USER_UBUNTU }}@${{ vars.HOST_SITE }}:${{ secret.HTML_DIR }}
